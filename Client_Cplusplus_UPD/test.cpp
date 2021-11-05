@@ -22,6 +22,11 @@ int main(int argc, char** argv) {
 	Display display = Display(999, 999);
 	std::cout << "width: " << display.getWidth() << " height: " << display.getHeight() << std::endl;
 
+	display.fillRect(-100, 1000, 1000, 1000, RGB(256, 256, 256));
+	cout << "Command 5" << endl;
+	Sleep(500);
+
+
 	display.fillRect(50, 100, 10, 10, RGB(0, 0, 0));
 	cout << "Command 5" << endl;
 	Sleep(500);
