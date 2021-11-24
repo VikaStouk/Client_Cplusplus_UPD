@@ -1,8 +1,7 @@
 #ifndef Display_h
 #define Display_h
 
-#define PORT 15000
-#define SERVERADDR "127.0.0.1"
+
 
 
 
@@ -38,7 +37,7 @@ using namespace std;
 class Display : public GraphicsLib
 {
 public:
-	Display(uint_least16_t w, uint_least16_t h) : GraphicsLib(w, h)
+	Display( uint_least16_t w, uint_least16_t h,int port=15000, string ip_address="127.0.0.1") : GraphicsLib(w, h)
 	{
 
 		// открытие сокета
@@ -52,13 +51,13 @@ public:
 		HOSTENT* hst;
 
 		dest_addr.sin_family = AF_INET;
-		dest_addr.sin_port = htons(PORT);
+		dest_addr.sin_port = htons(port);
 
 		// определение IP-адреса узла
-		if (inet_addr(SERVERADDR))
-			dest_addr.sin_addr.s_addr = inet_addr(SERVERADDR);
+		if (inet_addr(ip_address.c_str()))
+			dest_addr.sin_addr.s_addr = inet_addr(ip_address.c_str());
 		else
-			if (hst = gethostbyname(SERVERADDR))
+			if (hst = gethostbyname(ip_address.c_str()))
 				dest_addr.sin_addr.s_addr = ((unsigned long**)hst->h_addr_list)[0][0];
 			else
 			{
@@ -69,7 +68,7 @@ public:
 	};
 
 	void fillScreen(uint_least16_t color) {
-		snprintf(buffer, buffer_length, "#1#0x%06x$", color);
+		snprintf(buffer, buffer_length, "#1#%03d%03d%03d$", R_RGB(color), G_RGB(color), B_RGB(color));
 		sendCommand(buffer);
 	};
 
@@ -89,6 +88,7 @@ public:
 		snprintf(
 			buffer, buffer_length, "#4#%03d%03d%03d%03d%03d%03d%03d$", x0, y0, w, h, R_RGB(color), G_RGB(color), B_RGB(color)
 		);
+		
 		sendCommand(buffer);
 	};
 
@@ -96,6 +96,8 @@ public:
 		snprintf(
 			buffer, buffer_length, "#5#%03d%03d%03d%03d%03d%03d%03d$", x0, y0, w, h, R_RGB(color), G_RGB(color), B_RGB(color)
 		);
+		cout << color << endl;
+		cout << buffer << endl;
 		sendCommand(buffer);
 	};
 
