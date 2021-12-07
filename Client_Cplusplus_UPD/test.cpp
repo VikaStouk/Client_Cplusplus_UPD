@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
 	
 
 
-	display.fillRect(50, 100, 10, 10, RGB(255, 0, 0));
+	/*display.fillRect(50, 100, 10, 10, RGB(255, 0, 0));
 	cout << "Command 5" << endl;
 	Sleep(500);
 	display.fillRect(100, 100, 20, 20, RGB(0, 255, 0));
@@ -66,7 +66,21 @@ int main(int argc, char** argv) {
 	Sleep(500);
 
 
-	display.drawText(10, 10, "Abstraction", RGB(0, 0, 0), RGB(0, 0, 0), 12);
+	display.drawText(10, 10, "Abstraction", RGB(0, 0, 0), RGB(0, 0, 0), 12);*/
+
+
+	display.fillRect(80, 115, 60, 70, RGB(0, 0, 255));
+	cout << "Command 5" << endl;
+	Sleep(5);
+	display.fillRect(140, 115, 60, 70, RGB(0, 0, 255));
+	cout << "Command 5" << endl;
+	Sleep(5);
+	display.fillRect(180, 115, 60, 70, RGB(0, 0, 255));
+	cout << "Command 5" << endl;
+	Sleep(5);
+
+	
+	display.drawText(110, 80, "Time", RGB(0, 0, 255), RGB(0, 0, 0), 18);
 	getchar();
 	return 0;
 }
