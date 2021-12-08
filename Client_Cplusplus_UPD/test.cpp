@@ -1,10 +1,14 @@
 #include "iostream"
 #include "Display.h"
+#include <time.h>
 
 using namespace std;
 int x = 690;
 int main(int argc, char** argv) {
 	char buffer[30];
+	struct tm* ptr;
+	time_t It;
+
 	if (WSAStartup(0x202, (WSADATA*)&buffer[0]))
 	{
 		printf("WSAStartup error: %d\n", WSAGetLastError());
@@ -69,7 +73,7 @@ int main(int argc, char** argv) {
 	display.drawText(10, 10, "Abstraction", RGB(0, 0, 0), RGB(0, 0, 0), 12);*/
 
 
-	display.fillRect(80, 115, 60, 70, RGB(0, 0, 255));
+	/*display.fillRect(80, 115, 60, 70, RGB(0, 0, 255));
 	cout << "Command 5" << endl;
 	Sleep(5);
 	display.fillRect(140, 115, 60, 70, RGB(0, 0, 255));
@@ -77,10 +81,18 @@ int main(int argc, char** argv) {
 	Sleep(5);
 	display.fillRect(180, 115, 60, 70, RGB(0, 0, 255));
 	cout << "Command 5" << endl;
-	Sleep(5);
+	Sleep(5);*/
 
 	
-	display.drawText(110, 80, "Time", RGB(0, 0, 255), RGB(0, 0, 0), 18);
+	for (int i = 0; i < 1000; i++) {
+		It = time(NULL);
+		ptr = localtime(&It);
+
+		display.drawText(30, 40, asctime(ptr), RGB(255, 0, 0), RGB(255, 0, 0), 12);
+		Sleep(500);
+		display.fillScreen(RGB(255, 255, 255));
+		Sleep(500);
+	}
 	getchar();
 	return 0;
 }
